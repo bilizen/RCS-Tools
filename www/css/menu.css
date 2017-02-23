@@ -1,0 +1,114 @@
+@import url('style.css');
+
+.menu .item:nth-child(even)
+{
+     background-color: rgba(241, 241, 241, 0.94);
+}
+.menu .item:nth-child(odd)
+{
+     background-color: rgba(255, 255, 255, 0.94);
+}
+
+#divlistado {
+    height: 144px;
+    padding: 0;
+    overflow-y: auto;
+}
+.divlistadoReports{
+    height: 220px;
+    padding: 0;
+    overflow-y: auto;
+}
+.collection-item {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    line-height: 33px;
+    height: 33px;
+    font-size: 16px;
+    border-bottom: 1px solid #CCCCCC;
+}
+.collection-item span{
+    width: 100%;
+    display: block;
+    font-weight: bold;
+}
+button.delete{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 28px;
+    width: 24px;
+    background-image: url(../img/iconDelete.svg);
+    background-color: transparent;
+    background-size: 22px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.iconReport {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left: 12px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto 0;
+    background-color: #000;
+    border-radius: 18px;
+}
+.report1 .iconReport{
+    background: rgba(136,58,209);
+    background: url('../img/iconReport1.svg') center center no-repeat;
+    background-size: 100%, cover;
+}
+.report2 .iconReport{
+    background: rgba(136,58,209);
+    background: url('../img/iconModule2.svg') center center no-repeat;
+    background-size: 100%, cover;
+}
+.report3 .iconReport{
+    background: rgba(136,58,209);
+    background: url('../img/iconModule3.svg') center center no-repeat;
+    background-size: 100%, cover;
+}
+.report4 .iconReport{
+    background: rgba(136,58,209);
+    background: url('../img/iconModule4.svg') center center no-repeat;
+    background-size: 100%, cover;
+}
+
+/*ipad, tablet*/
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+    .menu{
+        background-image: url('../img/Bottom-Waves-1024.png');
+    }
+    .iconReport{
+        width: 72px;
+        height: 72px;
+    }
+    .collection-item{
+        height: 54px;
+        line-height: 54px;
+    }  
+    button.delete {
+        height: 54px;
+        width: 54px;
+        background-size: 32px;
+    }
+    #divlistado{
+        height: 164px;
+    }
+}
+@media only screen and (min-width : 375px) and (max-width : 767px) {
+    .menu{
+        background-image: url('../img/Bottom-Waves-667.png');
+    }
+}
+/*iphone 4, 5, 5s; android nexus 4, 5*/
+@media only screen and (min-width : 320px) and (max-width : 374px) {
+    .menu{
+        background-image: url('../img/Bottom-Waves-568.png');
+    }
+}

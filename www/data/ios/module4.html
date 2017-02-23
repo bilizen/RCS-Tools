@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Module 4</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  
+  <link href="../../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/module4.css" rel="stylesheet">
+  <link rel="shortcut icon" href="">
+
+  <!-- Fav and touch icons -->
+  <script type="text/javascript" src="../../js/jquery.min.js"></script>
+  <script type="text/javascript" src="../../cordova.js"></script>
+  <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+  
+
+  <script type="text/javascript" src="../../js/database.js"></script>
+  <script type="text/javascript" src="../../js/database_mod4.js"></script>
+  
+  <!-- TAG LENGUAGES -->
+  <script type="text/javascript" src="../../js/constant-es.js"></script>
+  
+
+</head>
+
+<body data-role="page" id="pageone">
+  <div class="hybrid_container">
+
+    <header>
+      <div class="top_bar_space"></div>
+      <div class="options_bar_space">
+        <div id="btn_left" class="arrow" onclick="menu();"><button id="txtpreferences">Return</button></div>
+        <div class="titleReport TitleStoreInfo">
+        </div>
+      </div>      
+    </header>
+
+    <div id="content">
+
+      <div class="section">
+        <span></span>
+        <div class="section_content">
+          <!-- begin dinamic block-->
+          <div class="stores" id="items">
+
+            <!-- store -->
+           <!--  <div class="storeArea">
+              <div class="storeName">
+                <p class="txtStoreName">Tienda Miraflores</p>
+              </div>
+            </div> -->
+            <!-- end store -->
+            <!-- store -->
+          <!--   <div class="storeArea">
+              <div class="storeName">
+                <p class="txtStoreName">Tienda Surco</p>
+              </div>
+            </div> -->
+            <!-- end store -->
+          </div>
+        </div>
+      </div>
+    </div>        
+
+</div>
+  
+  <!-- Modal Detail Store-->
+  <div class="modal fade" id="show_detailStore">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title txtAddress">
+            Address
+          </h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" name="btnclose" id="btnclose">Close</button>
+        </div>
+        <div class="modal-body">
+          <p class="address1"></p>
+          <p class="address2"></p>
+          <p class="city"></p>
+          <p class="country"></p>
+          <p class="phone"></p>
+        </div>
+        <div class="modal-footer">
+          <div class="form-group">
+            <input type="email" placeholder="Enter Email" class="emailClient">
+          </div>
+          <button type="button" class="btn btn-modal btnSendEmail">Send Email</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="show_loading" >
+      <div class="modal-dialog">
+          <div class="text-center loading">
+              <div></div>
+              <div></div>
+          </div>
+          <!-- <div class="text-center"><p name="txtloading" id="txtloading"></p></div> -->
+          <input type="hidden" id="txtocultaloading" name="txtocultaloading" data-dismiss="modal" aria-hidden="true" />
+      </div>
+  </div>
+
+  <!--Modal email Message -->
+  <div class="modal fade" id="show_emailMessage">
+    <div class="modal-dialog">
+        <div class="modal-content">                              
+            <div class="modal-body text-center">     
+                <p class="title-alert titleMessage">Message</p>                 
+                <p class="text-center txtemailMessage">Please check the required field</p>              
+            </div>
+            <div class="modal-footer info">
+                <button type="button" class="btn btn-modal btnok btnOkEmail" name="btngeneral"  data-dismiss="modal" aria-hidden="true">Ok</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <!--Modal of CONECTION -->
+  <div class="modal fade" id="show_alias">
+    <div class="modal-dialog">
+        <div class="modal-content">                              
+            <div class="modal-body text-center">     
+                <p class="title-alert titleMessage">Message</p>                 
+                <p class="text-center textgeneral"></p>              
+            </div>
+            <div class="modal-footer info">
+                <button type="button" class="btn btn-modal btnok" name="btngeneral"  data-dismiss="modal" aria-hidden="true">Ok</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+  <script type="text/javascript" src="../../js/scripts.js"></script>
+  <script type="text/javascript" src="../../js/design.js"></script>
+
+</body>
+</html>

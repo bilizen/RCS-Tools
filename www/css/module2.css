@@ -1,0 +1,226 @@
+@import url("style.css");
+@import url("module1.css");
+
+
+thead {
+    border-bottom: 1px solid rgb(200, 199, 204);
+    border-top: 1px solid rgb(200, 199, 204);
+    background-color: rgba(254, 254, 254, 0.9);
+}
+
+.outer-container
+{
+    background-color: #ccc;
+
+}
+
+.inner-container
+{
+    height: 100%;
+    overflow: hidden;
+}
+
+.table-header
+{
+    position: relative;
+}
+.table-body
+{
+    overflow: auto;
+}
+.headertable thead{
+	background-color: rgb(21, 125, 251);
+}
+.headertable thead th{
+	color: white;
+	font-weight: 100;
+	padding: 0 12px;
+}
+.headertable thead th:nth-child(2){
+	text-align: center;
+}
+.header-cell {
+    /*FJ*/
+    /*text-align: left;*/
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 8px;
+    position: relative;
+}
+tbody td:nth-child(2){
+	text-align: center;
+}
+tbody td:nth-child(3){
+	text-align: center;
+}
+.col-form-label{
+	padding: 6px 0;
+	margin: 15px auto 4px;
+}
+.viewTable{
+	border: none;
+}
+.section_content{
+	padding: 10px 0;
+	border-bottom: none;
+}
+.byDefault{
+	background-image: none !important;
+}
+.items{
+	overflow-y: auto;
+	background-color: #eee;
+	margin: 0 auto;
+}
+.items table{
+	background-color: #eee;
+}
+.body-cell 
+{
+    background-color: rgba(255,255,255,.8);
+    text-align: left;
+}
+.col1{
+    width:30%;
+    min-width: 100px;
+    max-width: 101px;
+}
+.col2{
+    width:40%;
+    min-width: 60px;
+    max-width: 61px;
+}
+.col3{
+    width:30%;
+    min-width: 60px;
+    max-width: 61px;
+}
+
+.headertable, .bodytable {
+    /*font-size: 65%;*/
+}
+table.headertable {
+    margin: 0 auto;
+}
+
+.input_effect label, .input_effect.focus label{
+    -webkit-transform: translate3d(0px,-44px,0) scale3d(0.95,0.95,1);
+    transform: translate3d(0px,-44px,0) scale3d(0.95,0.95,1);
+}
+
+label,input[type="text"], input[type="password"], input[type="number"], textarea{
+	width: 100%;
+}
+
+.titleReport span:last-child {
+    font-size: 115%;
+    height: 40px;
+    line-height: 40px;
+}
+
+
+/* FJ - INIIO */
+
+.form-realcs {
+	/*margin-top: 10px !important;*/
+	margin-bottom: 20px !important;
+}
+
+.form-realcs-1 {
+	margin-top: 15px !important;
+}
+
+.lbl-realcs {
+	/*background: red !important;*/
+    line-height: 20px !important;
+}
+
+.txt-realcs {
+	/*background: blue !important;*/
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+    line-height: 20px !important;
+    padding-bottom: 2px !important;
+    padding-top: 5px !important;
+}
+
+.section-realcs-2 {
+	margin-top: -15px !important;
+	background-color: white !important;
+	margin-bottom: 15px !important;
+}
+
+.table-realcs {
+	width: 330px !important;
+}
+
+.btn-imagen-realcs {
+	position: absolute;
+    right: 8px;
+    top: 8px;
+    height: 24px;
+    width: 24px;
+    background-image: url(../img/iconDelete.svg);
+    background-color: transparent;
+    background-size: 22px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.lblTotal {
+	text-align: right;
+}
+
+.row-total {
+	margin-right: 0px;
+    margin-left: 0px;
+}
+
+/* FJ - FIN */
+
+
+/*iphone 4, 5, 5s; android nexus 4, 5*/
+@media only screen and (min-width : 320px) and (max-width : 375px) {
+	*,body,button,input{
+		font-size: 90%;
+	}
+	.btn{
+		height: 33px;
+		font-size: 94%;
+	}
+}
+@media only screen and (min-width : 376px) and (max-width : 384px) {
+	*,body,button,input{
+		font-size: 94%;
+	}
+	.btn{
+		font-size: 98%;
+	}
+}
+/*ipad, tablet*/
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+	*,body,button,input,div,.btn{
+		font-size: 103%;
+	}
+	input.txt{
+		margin: 40px auto 25px;
+	}
+	.btn{
+		height: 54px;
+		margin-bottom: 20px;
+	}
+	.data, .theadStock, .dataStore, .dataStock{
+		height: 54px;
+		line-height: 54px;
+	}
+	.table > .container{
+		width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.table > .container > .row{
+		margin-left: 0;
+		margin-right: 0;
+	}
+}

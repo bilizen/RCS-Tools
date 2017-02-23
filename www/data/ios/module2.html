@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Module 2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  
+  <link href="../../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/module2.css" rel="stylesheet">
+  <link rel="shortcut icon" href="">
+
+  <!-- Fav and touch icons -->
+  <script type="text/javascript" src="../../js/jquery.min.js"></script>
+  <script type="text/javascript" src="../../cordova.js"></script>
+  <script type="text/javascript" src="../../js/bootstrap.min.js"></script>  
+
+  <script type="text/javascript" src="../../js/database.js"></script>
+  <script type="text/javascript" src="../../js/database_mod2.js"></script>
+  
+  <!-- TAG LENGUAGES -->
+  <script type="text/javascript" src="../../js/constant-es.js"></script>
+</head>
+
+<body data-role="page" id="pageone">
+  <div class="hybrid_container">
+    <header>
+      <div class="top_bar_space"></div>
+      <div class="options_bar_space">
+        <div id="btn_left" class="arrow" onclick="menu();"><button id="txtpreferences">Return</button></div>
+        <div class="titleReport">
+          <span class="lblTitleModule"></span>
+        </div>
+      </div>      
+    </header>
+
+    <div id="content">
+      <div class="section section-realcs-1">
+        <span></span>
+        <div class="section_content scan">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="form-group form-realcs form-realcs-1">     
+                  <label class="lblArea lbl-realcs">Area</label>
+                  <input type="text" class="txt txtArea txt-realcs" value="">                                              
+                </div> 
+              </div>
+            </div>
+      
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="form-group form-realcs">   
+                  <label class="lblItem lbl-realcs">Item</label>         
+                  <input type="text" class="txt txtItem txt-realcs" value="">                                            
+                </div> 
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="form-group form-realcs">       
+                  <label class="lblQty lbl-realcs">Quantity</label>
+                  <input type="text" class="txt txtQty txt-realcs" value="">                                            
+                </div> 
+              </div>
+            </div>
+          </div>                
+        </div>
+      </div>
+
+      <div class="section section-realcs-2">            
+        <div class="section_content viewTable">
+          <!-- table static header -->
+          <div class="table-header container">
+            <table class="headertable row">
+              <thead class="col-xs-12">
+                <tr>
+                  <th class="header-cell col1 lblArea">Area</th>
+                  <th class="header-cell col2 lblItem">Item</th>
+                  <th class="header-cell col3 lblQty">Quantity</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+
+          <!--<div class="table-body items col-xs-12">-->
+          <div class="table-body items table-realcs">
+            <table>
+              <tbody class="listItems">
+                <!-- <tr>
+                <td class="header-cell col1 lblArea">Area</td>
+                <td class="header-cell col2 lblItems">Items</td>
+                <td class="header-cell col3 lblQty">Qty</td>
+                </tr>
+                <tr>
+                <td class="header-cell col1 lblArea">Area</td>
+                <td class="header-cell col2 lblItems">Items</td>
+                <td class="header-cell col3 lblQty">Qty</td>
+                </tr>
+                <tr>
+                <td class="header-cell col1 lblArea">Area</td>
+                <td class="header-cell col2 lblItems">Items</td>
+                <td class="header-cell col3 lblQty">Qty</td>
+                </tr> -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row row-total">
+            <!--<div class="col-xs-3">-->
+            <div class="col-xs-offset-7 col-xs-3">
+              <div class="form-group form-realcs">
+                <label class="col-form-label lblTotal txt-realcs">Total:</label>
+              </div>
+            </div>
+            <!--<div class="col-xs-9">-->
+            <div class="col-xs-2">
+              <div class="form-group form-realcs">
+                <input type="text" class="txt txtTotal byDefault txt-realcs" value="" disabled>
+              </div>
+            </div>     
+          </div>
+
+          <div class="container btnOptions">
+            
+            <div class="row">
+              <div class="col-xs-4 col-xs-offset-2">
+                <button type="button" class="btn btn-app btn-block btnExport" onclick="ExportFile()">Export</button>
+              </div> 
+              <div class="col-xs-4">
+                <button type="button" class="btn btn-app btn-block btnScan" onclick="goScan()">Scan</button>
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>        
+  </div>
+
+
+  <!-- FJ - INICIO -->
+  <!-- Confirm-->
+  <div class="modal fade" id="ModalConfirmDeleteItem">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="lbldeleteser">¿Want to delete this row?</h4>
+
+                <!-- <div><span id="id-item"></span> </div> -->
+
+            </div>
+            <div class="modal-footer add">
+                <button type="button" class="btn btn-modal left danger" id="btnsidelete" name="btnsi" data-dismiss="modal" aria-hidden="true" onclick="deleteItem()">Yes</button>
+                <button type="button" class="btn btn-modal right" id="btnnodelete" name="btnno" data-dismiss="modal" aria-hidden="true">No</button>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- FJ - FIN -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="show_loading" >
+    <div class="modal-dialog">
+      <div class="text-center loading">
+        <div></div>
+        <div></div>
+      </div>
+      <!-- <div class="text-center"><p name="txtloading" id="txtloading"></p></div> -->
+      <input type="hidden" id="txtocultaloading" name="txtocultaloading" data-dismiss="modal" aria-hidden="true" />
+    </div>
+  </div>
+
+  <!--Modal of CONECTION -->
+  <div class="modal fade" id="show_alias">
+    <div class="modal-dialog">
+    <div class="modal-content">                              
+      <div class="modal-body text-center">     
+        <p class="title-alert titleMessage">Message</p>                 
+        <p class="text-center textgeneral"></p>              
+      </div>
+      <div class="modal-footer info">
+        <button type="button" class="btn btn-modal btnok" name="btngeneral"  data-dismiss="modal" aria-hidden="true">Ok</button>
+      </div>
+    </div>
+    </div>
+  </div>
+  
+  <script type="text/javascript" src="../../js/scripts.js"></script>
+  <script type="text/javascript" src="../../js/design.js"></script>
+</body>
+</html>

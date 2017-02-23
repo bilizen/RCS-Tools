@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Report 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  
+  <link href="../../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/style.css" rel="stylesheet">
+  <link href="../../css/module1.css" rel="stylesheet">
+  <link rel="shortcut icon" href="">
+
+  <!-- Fav and touch icons -->
+  <script type="text/javascript" src="../../js/jquery.min.js"></script>
+  <script type="text/javascript" src="../../cordova.js"></script>
+  <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../../js/scripts.js"></script>
+  
+
+  <script type="text/javascript" src="../../js/database.js"></script>
+  <script type="text/javascript" src="../../js/database_mod1.js"></script>
+  
+  <!-- TAG LENGUAGES -->
+  <script type="text/javascript" src="../../js/constant-es.js"></script>
+  
+
+</head>
+
+<body data-role="page" id="pageone">
+    <div class="hybrid_container">
+
+        <header>
+            <div class="top_bar_space"></div>
+            <div class="options_bar_space">
+                <div id="btn_left" class="arrow" onclick="menu();"><button id="txtpreferences">Return</button></div>
+                <div class="titleReport">
+                    <span class="titleNameReport"></span>
+                    <span class="titleStoreName"></span>
+                </div>
+        </div>      
+    </header>
+
+    <div id="content">
+
+        <div class="section">
+            <span></span>
+            <div class="section_content scan">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <div class="input_effect">          
+                                <input type="text" class="txt inputDetails txtSku" id="txtCode" value="">
+                                <label class="labelDetails lblCode">Code</label>              
+                            </div> 
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-app btnScan" onclick="goScan()">Scan</button>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+
+        <div class="section">
+            <span></span>
+            <div class="section_content datainfo"> 
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-6">           
+                        <!-- Sizes -->
+                            <label  class="comboLabel listSize">Size</label>    
+                            <button class="btn listButton btnSizes" onclick="writeListSizes()">
+                                <span class="caret"></span>
+                            </button>
+                        </div>
+                        <div class="col-xs-6">
+                            <!-- Colors -->
+                            <label class="comboLabel listColor">Color</label>
+                            <button class="btn listButton btnColor" onclick="writeListColors()">
+                                <span class="caret"></span>
+                            </button>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-xs-6">                                                                   
+                            <div class="input_effect">          
+                                <input type="text" class="txt inputDetails txtStyle" disabled value="">
+                                <label class="labelDetails lblStyle">Style</label>              
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="input_effect">          
+                                <input type="text" class="txt inputDetails txtPrice" disabled value="">
+                                <label class="labelDetails lblPrice">Price</label>              
+                            </div> 
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-xs-6">                                                                   
+                            <div class="input_effect">          
+                                <input type="text" class="txt inputDetails txtSock" disabled value="">
+                                <label class="labelDetails lblStock">Stock</label>              
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="input_effect">          
+                                <input type="text" class="txt inputDetails txtCmp" disabled value="">
+                                <label class="labelDetails lblCMP">Company</label>              
+                            </div> 
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="txtarea txtDescription">
+                                <!-- Vendor Name: Nike <br>
+                                Desc: AIR MAX 1 ESSENTIAL<br>
+                                Color LongName: WHITE<br>
+                                SKU/ALU: 4564<br> -->
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>                
+        </div>
+
+
+        <div class="section">
+            <div class="section_content imgProduct">
+                <div class="col-xs-7 centerImgVertical">
+                    <div class="areaProduct">
+                        <img src="" id="imageProduct" class="showProduct"/>
+                    </div>                        
+                </div>
+                <div class="col-xs-5">
+                    <div class="areaButton">
+                        <button type="button" class="btn btn-app btnOthersStock" onclick="showOthersStores()">Other Stores</button>
+                        <button type="button" class="btn btn-app btnPromotions" onclick="showPromotionsOfProduct()">Promotions</button>
+                    </div>
+                </div>                       
+            </div>
+        </div>
+
+    </div>        
+
+</div>
+
+
+<!-- Modal -->
+
+<div class="modal fade" id="show_loading" >
+    <div class="modal-dialog">
+        <div class="text-center loading">
+            <div></div>
+            <div></div>
+        </div>
+        <!-- <div class="text-center"><p name="txtloading" id="txtloading"></p></div> -->
+        <input type="hidden" id="txtocultaloading" name="txtocultaloading" data-dismiss="modal" aria-hidden="true" />
+    </div>
+</div>
+
+
+
+<!--Modal of Promotions -->
+<div class="modal fade" id="show_promotions" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content"> 
+            <div class="modal-header text-center">                    
+                <h4 class="modal-title btnPromotions">
+                    Promotions
+                </h4>                
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" name="btnclose" id="btnclose">Close</button>
+            </div>                              
+            <div class="modal-body text-center">     
+                <div class="table">
+                    <div class="container-fluid">
+                        <div class="others thead thead-realcs">
+                            <div class="col-xs-6 text-center txtPromotionsName">Name</div>
+                            <div class="col-xs-3 text-center txtStartDate">Start Date</div>
+                            <div class="col-xs-3 text-center txtEndDate">End Date</div>
+                            <div class="clear-realcs"></div>
+                        </div>
+                        <div class="scrolleable loadPromotions">
+                           <!--  <div class="storeRow">
+                                <div class="col-xs-6 storeStock">AAAAAAA</div>
+                                <div class="col-xs-3 text-center storeStock ">10-12-17</div>
+                                <div class="col-xs-3 text-center storeStock ">12-12-17</div>
+                            </div>
+                            <div class="storeRow">
+                                <div class="col-xs-6 storeStock">AAAAAAA</div>
+                                <div class="col-xs-3 text-center storeStock ">10-12-17</div>
+                                <div class="col-xs-3 text-center storeStock ">12-12-17</div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>                   
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--Modal of Others -->
+<div class="modal fade" id="show_otherStores" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content"> 
+            <div class="modal-header text-center">                    
+                <h4 class="modal-title btnOthersStock">
+                    Others Stores
+                </h4>                
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" name="btnclose" id="btnclose">Close</button>
+            </div>                              
+            <div class="modal-body text-center">     
+                <div class="table">
+                    <div class="container-fluid">
+                        <div class="others thead">
+                            <div class="col-xs-8 text-center txtStoreName">Store</div>
+                            <div class="col-xs-4 text-center txtStock">Stock</div>
+                            <div class="clear-realcs"></div>
+                        </div>
+                        <div class="scrolleable loadOtherStores">                         
+                           <!--  <div class="storeRow">
+                                <div class="col-xs-9 text-center">StoreName1</div>
+                                <div class="col-xs-3 text-center ">Stock</div>
+                            </div>     -->               
+                        </div>                        
+                    </div>   
+                </div>                   
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal Sizes -->
+<div class="modal fade" id="show_listSizes">
+    <div class="modal-dialog">
+        <div class="modal-content">  
+            <div class="modal-header text-center">            
+                <h4 class="modal-title TitleListSizes">
+                    List Sizes
+                </h4>                
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" name="btnclose" id="btnclose">Close</button>
+            </div>                              
+            <div class="modal-body text-center">     
+                <!-- <p class="title-alert listSize">Sizes</p>   -->
+                <div class="loadlistSizes">
+                    
+                </div>                   
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Colors -->
+<div class="modal fade" id="show_listColors">
+    <div class="modal-dialog">
+        <div class="modal-content"> 
+            <div class="modal-header text-center">                    
+                <h4 class="modal-title TitleListColors">
+                    List Colors
+                </h4>                
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" name="btnclose" id="btnclose">Close</button>
+            </div>                               
+            <div class="modal-body text-center">
+                <div class="loadlistColors">
+                </div>                   
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--Modal of CONECTION -->
+<div class="modal fade" id="show_alias">
+  <div class="modal-dialog">
+      <div class="modal-content">                              
+          <div class="modal-body text-center">     
+              <p class="title-alert titleMessage">Message</p>                 
+              <p class="text-center textgeneral"></p>              
+          </div>
+          <div class="modal-footer info">
+              <button type="button" class="btn btn-modal btnok" name="btngeneral"  data-dismiss="modal" aria-hidden="true">Ok</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<script type="text/javascript" src="../../js/scripts.js"></script>
+<script type="text/javascript" src="../../js/design.js"></script>
+
+</body>
+</html>

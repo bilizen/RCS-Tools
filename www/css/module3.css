@@ -1,0 +1,118 @@
+@import url("style.css");
+
+.stores{
+	overflow-y: auto;
+    background-image: url('../img/Bottom-Waves-1024.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat; 
+}
+.promoArea{
+	background-color: #ffffff;
+}
+.titleReport span{
+	font-size: 115%;
+}
+.promoName{
+	position: relative;
+	height: auto;
+	line-height: 28px;
+	padding: 12px 30px;
+	font-weight: bold;
+}
+.promoName:after{
+	content: "";
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	top: 0;
+	bottom: 0;
+	left: 12px;
+	z-index: 1;
+	margin: auto;
+    background-image: url(../img/nextBtnSilver.svg);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;  
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+.promoName.active:after{
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+table {
+    width: 100%;
+    background-color: #f3f3f3;
+}
+tr {
+    height: 34px;
+    line-height: 34px;
+}
+td {
+    font-size: 90%;
+}
+td:first-child {
+	padding-left: 40px;
+	font-weight: bold;
+    width: 50%;
+}
+td:last-child {
+	padding-right: 40px;
+}
+.active{
+	background-color: transparent !important;
+	color: #157dfb;
+}
+.promoDetail{
+	max-height: 0px;
+	overflow-y: auto;
+	-webkit-transition: max-height 0.33s; 
+	transition: max-height 0.33s;  
+}
+.showDetailPromo{
+	max-height: 136px;
+	-webkit-transition: max-height 0.23s; 
+	transition: max-height 0.23s;  
+}
+.promoArea:not(:first-child) {
+    border-top: 1px solid rgb(200, 199, 204);
+}
+.promoArea:last-child {
+    border-bottom: 1px solid rgb(200, 199, 204);
+}
+
+/*ipad, tablet*/
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+	.stores{
+	    background-image: url('../img/Bottom-Waves-1024.png');
+	}
+	.promoName{
+		padding: 10px 38px;
+	}
+	.promoName,
+	.promoDetail{
+		font-size: 135%;
+		line-height: 44px;
+	}
+	.promoName:after{
+		width: 16px;
+		height: 16px;
+		left: 14px;
+	}
+	tr {
+	    height: 44px;
+	    line-height: 44px;
+	}
+}
+@media only screen and (min-width : 376px) and (max-width : 767px) {
+	.stores{
+	    background-image: url('../img/Bottom-Waves-667.png');
+	}
+}
+/*iphone 4, 5, 5s; android nexus 4, 5*/
+@media only screen and (min-width : 320px) and (max-width : 375px) {
+	.stores{
+	    background-image: url('../img/Bottom-Waves-568.png');
+	}
+}

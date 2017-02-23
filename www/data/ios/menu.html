@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RCS Online - Menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  
+  <link href="../../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/menu.css" rel="stylesheet">
+
+  <!-- Fav and touch icons -->
+
+  <script type="text/javascript" src="../../js/jquery.min.js"></script>
+  <script type="text/javascript" src="../../cordova.js"></script>
+
+  <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../../js/database.js"></script>
+  <script type="text/javascript" src="../../js/menu.js"></script>
+  <script type="text/javascript" src="../../js/design.js"></script>
+
+  <!-- TAG LENGUAGES -->
+  <script type="text/javascript" src="../../js/constant-es.js"></script>
+
+</head>
+
+<body>
+    <div class="hybrid_container">
+        <header>
+            <div class="top_bar_space"></div>
+            <div class="options_bar_space">
+              <div id="btn_left"><button class="img_logotitle"></button></div>
+              <div id="txt_maintitle" class="titleTopBar"><img src="../../img/iconLogo.svg" class="titleLogo"/></div>
+              <div id="btn_right" class="config">                
+                <button onclick="showOptions()" ></button>
+            </div>
+        </div>      
+    </header>    
+
+    <div class="content">
+        <div class="menu">
+          <!--
+            Harcode Button report 1
+            -->
+            <!-- <button class ="waves-effect waves-light  item report1" onclick ="verificSelectStore()">
+              <span class ='box' >
+              <span class ='iconReport'> </span>
+              <span class ='item_title lblgvst1' >Inventory Lookup</span>
+              </span>
+            </button>
+
+            <button class ="waves-effect waves-light  item report2" onclick ="openModulo2()">
+              <span class ='box' >
+              <span class ='iconReport'> </span>
+              <span class ='item_title lblgvst2' >Physical Inventory</span>
+              </span>
+            </button> -->
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!-- Loading -->
+<div class="modal fade" id="show_loading" >
+    <div class="modal-dialog">
+        <div class="text-center loading">
+            <div></div>
+            <div></div>
+        </div>
+        <input type="hidden" id="txtocultaloading" name="txtocultaloading" data-dismiss="modal" aria-hidden="true" />
+    </div>
+</div>
+
+<!-- Modal Options-->
+<div class="modal fade zIndex1" id="show_options">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">                    
+                <h4 class="modal-title" id="lblToolsTitle">
+                    Settings
+                </h4>
+                
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" name="btnclose" id="btnclose">Close</button>
+            </div>                
+            <div class="modal-footer add">  
+                <button class="btn btn-modal actual_server" data-dismiss="modal" onclick="showActualServer();">Current Server</button>    
+
+                <button class="btn btn-modal landBtnLeft" data-dismiss="modal" id="servers_list" onclick="mostrarModal();">Servers</button> 
+
+                <button class="btn btn-modal landBtnRight" data-dismiss="modal" id="add_alias" onclick="newInfoServer();">Add Server</button> 
+                <button class="btn btn-modal lblMoreOptions" data-dismiss="modal" id="more_options" onclick="modalMoreOptions()">More Options</button>
+
+                <button class="btn btn-modal danger" data-dismiss="modal" id="btnSignOut" onclick="showSignOut()">Sign out</button>             
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Actual Server-->
+<div class="modal fade show_actual_server">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close back" data-dismiss="modal" aria-hidden="true" onclick="showOptions()">
+                    Back
+                </button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" name="btnclose" id="btnclose">Close</button>
+                <h4 class="modal-title" id="lblViewServer">
+                    Current Server
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="info">
+                  <div class="text-center twoCols landLblLeft" id="server" >
+                    <div id="txtServerT">Server:</div>
+                    <div id="txtServer"></div>
+                  </div>
+                  <div class="text-center twoCols landLblRight" id="ip" >
+                    <div id="txtIpT">IP:</div>
+                    <div id="txtIP"></div>
+                  </div>
+                  <div class="text-center" id="user" >
+                    <div id="txtUserT">User:</div>
+                    <div id="txtUser"></div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Servers List-->
+<div class="modal fade zIndex2" id="ServersList" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close back" data-dismiss="modal" aria-hidden="true" onclick="showOptions()">
+                    Back
+                </button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" name="btnclose" id="btnclose">Close</button>
+                <h4 class="modal-title" id="lblchangealit">
+                    Servers
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-control select-alias" id="divlistado">
+                </div>
+            </div>                
+
+        </div>
+    </div>
+</div>
+
+<!-- modal Option Hide Reports -->
+<div class="modal fade zIndex2" id="ModalReportsOption" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <button type="button" class="close back" data-dismiss="modal" aria-hidden="true" onclick="showOptions()">
+            Back
+        </button>
+        <h4 class="modal-title" id="lblHideTitle">
+            Hide/Show Reports
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" name="btnclose" id="btnclose">Close</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-control select-alias divlistadoReports">
+          <div id="list_reports"></div>
+        </div>
+      </div>
+      <div class="modal-footer add">
+        <button onclick="buttonOkReports()" class="btn btn-modal btnok" data-dismiss="modal" >Ok</button> 
+      </div>                
+    </div>
+  </div>
+</div>
+
+<!-- Modal Confirm change Server-->
+<div class="modal fade zIndex3" id="ModalConfirm" >
+    <input type="hidden" name="txtvalue" id="txtvalue" value="0">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="lblchangealic">
+                    Want to change Server?
+                </h4>
+            </div>
+            <div class="modal-footer add">
+                <button type="button" class="btn btn-modal left" id="btnsi" name="btnsi" data-dismiss="modal" aria-hidden="true" onclick="ocultaMiModal();">Yes</button>
+                <button type="button" class="btn btn-modal right nostrong" id="btnno" name="btnno" data-dismiss="modal" aria-hidden="true">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Modal Store  report1-->
+<div class="modal fade zIndex1" id="show_modalStore1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center lblChooseStore">Choose Your Store</div>
+            <div class="list_store list_r1">
+            <!-- Stores -->
+            </div>
+            <button onclick="openModule1()" class="btn btn-modal btnok" data-dismiss="modal" >Ok</button> 
+        </div>
+    </div>
+</div>
+
+
+<!--Modal Store  report3-->
+<div class="modal fade zIndex1" id="show_modalStore3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center lblChooseStore">Choose Your Store</div>
+            <div class="list_store list_r3">
+            <!-- Stores -->
+            </div>
+            <button onclick="openModule3()" class="btn btn-modal btnok" data-dismiss="modal" >Ok</button> 
+        </div>
+    </div>
+</div>
+
+<!--Modal Store  report4-->
+<div class="modal fade zIndex1" id="show_modalStore4">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center lblChooseStore">Choose Your Store</div>
+            <div class="list_store list_r4">
+            <!-- Stores -->
+            </div>
+            <button onclick="openModule4()" class="btn btn-modal btnok" data-dismiss="modal" >Ok</button> 
+        </div>
+    </div>
+</div>
+
+
+<!--Modal ConfigStore -->
+<div class="modal fade zIndex1" id="show_modalConfigStore" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <button type="button" class="close back" data-dismiss="modal" aria-hidden="true" onclick="modalMoreOptions()">
+                Back
+            </button>
+            <h4 class="modal-title lblChooseStore">
+                Choose Your Store
+            </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" name="btnclose" id="btnclose">Close</button>
+          </div>
+          <div class="list_store list_configStore">
+          <!-- Stores -->
+          </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- modal More options -->
+<div class="modal fade" id="show_modalMoreOptions">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+                <button type="button" class="close back" data-dismiss="modal" aria-hidden="true" onclick="showOptions()">
+                    Back
+                </button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" name="btnclose" id="btnclose">Close</button>
+                <h4 class="modal-title lblMoreOptions">
+                    More Options
+                </h4>
+            </div>
+            <div class="modal-footer ">  
+                <button class="btn btn-modal lblImageRoot" data-dismiss="modal" onclick="showImageRoot();">Image root</button>    
+                <button class="btn btn-modal lblChooseStore" data-dismiss="modal" id="choose_store" onclick="show_modalConfigStore();">Choose Store</button> 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Modal of Images root -->
+<div class="modal fade" id="show_imagesRoot" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content"> 
+            <div class="modal-header text-center">       
+            <button type="button" class="close back" data-dismiss="modal" aria-hidden="true" onclick="modalMoreOptions();">Back</button>   
+                <h4 class="modal-title lblImageRoot">
+                    Choose Path
+                </h4>                
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" name="btnclose" id="btnclose" onclick="">Close</button>
+            </div>                              
+            <div class="modal-body text-center">     
+                <div class="section">
+                    <div class="section_content">
+                        <div class="radio_wrapper hosting" data-value="0" onclick="" >
+                            <div class="input-radio"><span></span></div>
+                            <label class="lblHosting">Hosting</label>   
+                        </div> 
+                        <hr>
+                        <div class="radio_wrapper database" data-value="1" >   
+                            <div class="input-radio"><span></span></div>
+                            <label class="lblGlobal">Database</label>            
+                        </div>
+                    </div>  
+                </div>                 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Confirm delete server -->
+<div class="modal fade zIndex3" id="ModalConfirmDelete" >
+  <input type="hidden" name="txtvaluedelete" id="txtvaluedelete" value="0">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="lbldeleteser">
+                Want to delete server?
+            </h4>
+        </div>
+        <div class="modal-footer add">
+            <button type="button" class="btn btn-modal left danger" id="btnsidelete" name="btnsi" data-dismiss="modal" aria-hidden="true" onclick="ocultaMiModalDelete()">Yes</button>
+            <button type="button" class="btn btn-modal right" id="btnnodelete" name="btnno" data-dismiss="modal" aria-hidden="true">No</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--Confirm modal Sign out-->
+<div class="modal fade zIndex3" id="ModalConfirmSignOut" >      
+  <input type="hidden" name="txtvaluedelete" id="txtvaluedelete" value="0">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title" id="lblSignOut">
+                Are you sure want to sign out?
+            </h4>
+        </div>
+        <div class="modal-footer add">
+            <button type="button" class="btn btn-modal left danger" id="btnYesSignOut" name="btnYesSignOut" data-dismiss="modal" aria-hidden="true" onclick="confirmSignOut()">Yes</button>
+            <button type="button" class="btn btn-modal right" id="btnnoSignOut" name="btnno" data-dismiss="modal" aria-hidden="true">No</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--Can't delete active server-->
+<div class="modal fade zIndex4" id="ModalMessage" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    Can't delete an active server
+                </h4>
+            </div>
+            <div class="modal-footer add"><button type="button" class="btn btn-rcs" data-dismiss="modal" aria-hidden="true">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--Modal OF CONECTION -->
+<div class="modal fade" id="show_alias">
+  <div class="modal-dialog">
+      <div class="modal-content">                              
+          <div class="modal-body text-center">     
+              <p class="title-alert titleMessage">Message</p>                 
+              <p  class="text-center textgeneral"></p>              
+          </div>
+          <div class="modal-footer info">
+              <button type="button" class="btn btn-modal btnok"  name="btngeneral"  data-dismiss="modal" aria-hidden="true">Ok</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- no connection -->
+<div class="modal fade" id="no_connection" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">                              
+      <div class="modal-body text-center">     
+        <p class="title-alert titleMessage">Message</p>                 
+        <p class="text-center textNoConnection">No network connection</p>              
+      </div>
+      <div class="modal-footer info">
+          <button type="button" class="btn btn-modal btnok"  name="btngeneral"  data-dismiss="modal" aria-hidden="true" onclick="buttonExitApp();">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="../../js/scripts.js"></script>
+<script type="text/javascript" src="../../js/design.js"></script>
+
+</body>
+
+</html>
